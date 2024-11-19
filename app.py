@@ -1,8 +1,11 @@
-from dash import Dash, html
+import plotly.express as px
+import pandas as pd
 
-app = Dash()
+df = pd.read_csv('123.csv')
 
-app.layout = [html.Div(children='Hello World')]
+fig = px.line(df, x="x", y="y", title="Unsorted Input")
+fig.show()
 
-if __name__ == '__main__':
-    app.run(debug=True)
+df = df.sort_values(by="x")
+fig = px.line(df, x="x", y="y", title="Sorted Input")
+fig.show()
